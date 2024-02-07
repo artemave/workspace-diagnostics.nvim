@@ -8,7 +8,10 @@
 
 <details>
   <summary>Demo</summary>
+  Here you can see that even though a single file gets opened, the diagnostics are populated for other files as well.
+
   <div align="center">
+
 
 https://github.com/artemave/workspace-diagnostics.nvim/assets/23721/ae32fdc8-a547-4194-ae00-df19c66d2b5f
 
