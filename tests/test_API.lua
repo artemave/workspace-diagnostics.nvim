@@ -21,7 +21,10 @@ T["setup()"] = MiniTest.new_set()
 
 -- A rather meaningless test. Keep it for the reference.
 T["setup()"]["public api"] = function()
-  eq(child.lua_get([[type(require('workspace-diagnostics').populate_workspace_diagnostics)]]), "function")
+  eq(
+    child.lua_get([[type(require('workspace-diagnostics').populate_workspace_diagnostics)]]),
+    "function"
+  )
   eq(child.lua_get([[type(require('workspace-diagnostics').setup)]]), "function")
 end
 

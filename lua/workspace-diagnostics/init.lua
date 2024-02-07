@@ -2,7 +2,6 @@ local WorkspaceDiagnostics = {}
 local _loaded_clients = {}
 local _workspace_files
 
-
 --- Plugin configuration with its default values.
 ---
 --- Default values:
