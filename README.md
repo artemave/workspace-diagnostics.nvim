@@ -3,12 +3,17 @@
 </p>
 
 <p align="center">
-    > Populates project-wide lsp diagnostcs, regardless of what files are opened.
+    Populates project-wide lsp diagnostcs, regardless of what files are opened.
 </p>
 
-<div align="center">
-    > Drag your video (<10MB) here to host it for free on GitHub.
-</div>
+<details>
+  <summary>Demo</summary>
+  <div align="center">
+
+https://github.com/artemave/workspace-diagnostics.nvim/assets/23721/ae32fdc8-a547-4194-ae00-df19c66d2b5f
+
+  </div>
+</details>
 
 ## 📋 Installation
 
