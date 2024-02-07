@@ -86,7 +86,7 @@ jobs:
         id: release
         with:
           release-type: simple
-          package-name: YOUR_REPOSITORY_NAME
+          package-name: workspace-diagnostics.nvim
 
       - name: tag stable versions
         if: ${{ steps.release.outputs.release_created }}

@@ -28,7 +28,3 @@ documentation-ci: deps documentation
 # performs a lint check and fixes issue if possible, following the config in `stylua.toml`.
 lint:
 	stylua .
-
-# setup
-setup:
-	./scripts/setup.sh

@@ -1,2 +1,3 @@
-YourPluginName.options	neovim-plugin-boilerplate.txt	/*YourPluginName.options*
-YourPluginName.setup()	neovim-plugin-boilerplate.txt	/*YourPluginName.setup()*
+WorkspaceDiagnostics.options	workspace-diagnostics.txt	/*WorkspaceDiagnostics.options*
+WorkspaceDiagnostics.populate_workspace_diagnostics()	workspace-diagnostics.txt	/*WorkspaceDiagnostics.populate_workspace_diagnostics()*
+WorkspaceDiagnostics.setup()	workspace-diagnostics.txt	/*WorkspaceDiagnostics.setup()*

@@ -1,0 +1,43 @@
+==============================================================================
+------------------------------------------------------------------------------
+                                                  *WorkspaceDiagnostics.options*
+                         `WorkspaceDiagnostics.options`
+Plugin configuration with its default values.
+
+Default values:
+>
+  WorkspaceDiagnostics.options = {
+    workspace_files = function()
+      return vim.fn.split(vim.fn.system("git ls-files"), "\n")
+    end,
+
+    debug = false,
+  }
+
+<
+
+------------------------------------------------------------------------------
+                                                  *WorkspaceDiagnostics.setup()*
+                    `WorkspaceDiagnostics.setup`({options})
+Define workspace-diagnostics setup.
+
+Parameters ~
+{options} `(table)` Module config table. See |WorkspaceDiagnostics.options|.
+
+Usage ~
+`require("workspace-diagnostics").setup()` (add `{}` with your |WorkspaceDiagnostics.options| table)
+
+------------------------------------------------------------------------------
+                         *WorkspaceDiagnostics.populate_workspace_diagnostics()*
+    `WorkspaceDiagnostics.populate_workspace_diagnostics`({client}, {bufnr})
+Populate workspace diagnostics.
+
+Parameters ~
+{client} `(table)` Lsp client.
+{bufnr} `(number)` Buffer number.
+
+Usage ~
+`require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)`
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
