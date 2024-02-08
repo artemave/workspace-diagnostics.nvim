@@ -2,14 +2,15 @@
   <h1 align="center">workspace-diagnostics.nvim</h2>
 </p>
 
-<p align="center">
-    Populates project-wide lsp diagnostcs, regardless of what files are opened. <a href="https://artem.rocks/posts/workspace_diagnostics_nvim">This post</a> goes into details of lsp diagnostics and how this plugin works.
+<p>
+    Populates project-wide lsp diagnostcs, regardless of what files are opened.
 </p>
+<p> <a href="https://artem.rocks/posts/workspace_diagnostics_nvim">This post</a> goes into details of lsp diagnostics and how this plugin works.</p>
 
 <details>
   <summary>Demo</summary>
-  Here you can see that even though a single file gets opened, the diagnostics are populated for other files as well.
-
+  <p> </p>
+  <p>Here you can see that even though a single file gets opened, the diagnostics are populated for other files as well.</p>
   <div align="center">
 
 
