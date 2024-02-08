@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    Populates project-wide lsp diagnostcs, regardless of what files are opened. [This post](https://artem.rocks/posts/workspace_diagnostics_nvim) goes into details of lsp diagnostics and how this plugin works.
+    Populates project-wide lsp diagnostcs, regardless of what files are opened. <a href="https://artem.rocks/posts/workspace_diagnostics_nvim">This post</a> goes into details of lsp diagnostics and how this plugin works.
 </p>
 
 <details>
