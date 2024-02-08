@@ -108,7 +108,7 @@ require("workspace-diagnostics").setup({
 
 PRs and issues are always welcome. Make sure to provide as much context as possible when opening one.
 
-To run `make lint` locally, you'd need to install `stylua`:
+To run `make lint` locally, you'd need to install [stylua](https://github.com/JohnnyMorganz/StyLua#installation):
 
 ```sh
 cargo install stylua --features lua52
