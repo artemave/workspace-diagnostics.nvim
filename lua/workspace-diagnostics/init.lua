@@ -35,9 +35,9 @@ local function _get_workspace_files()
       return vim.fn.filereadable(path) == 1
     end, _workspace_files)
 
-    _workspace_files = map(_workspace_files, function(_, path)
+    _workspace_files = vim.tbl_map(function(path)
       return vim.fn.fnamemodify(path, ":p")
-    end)
+    end, _workspace_files)
   end
 
   return _workspace_files
