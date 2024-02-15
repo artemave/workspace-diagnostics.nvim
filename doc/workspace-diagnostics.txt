@@ -1,12 +1,12 @@
 ==============================================================================
 ------------------------------------------------------------------------------
-                                                  *WorkspaceDiagnostics.options*
-                         `WorkspaceDiagnostics.options`
+                                                                     *M.options*
+                                  `M.options`
 Plugin configuration with its default values.
 
 Default values:
 >
-  WorkspaceDiagnostics.options = {
+  M.options = {
     workspace_files = function()
       return vim.fn.split(vim.fn.system("git ls-files"), "\n")
     end,
@@ -17,8 +17,8 @@ Default values:
 <
 
 ------------------------------------------------------------------------------
-                                                  *WorkspaceDiagnostics.setup()*
-                    `WorkspaceDiagnostics.setup`({options})
+                                                                     *M.setup()*
+                              `M.setup`({options})
 Define workspace-diagnostics setup.
 
 Parameters ~
@@ -28,8 +28,8 @@ Usage ~
 `require("workspace-diagnostics").setup()` (add `{}` with your |WorkspaceDiagnostics.options| table)
 
 ------------------------------------------------------------------------------
-                         *WorkspaceDiagnostics.populate_workspace_diagnostics()*
-    `WorkspaceDiagnostics.populate_workspace_diagnostics`({client}, {bufnr})
+                                            *M.populate_workspace_diagnostics()*
+             `M.populate_workspace_diagnostics`({client}, {bufnr})
 Populate workspace diagnostics.
 
 Parameters ~

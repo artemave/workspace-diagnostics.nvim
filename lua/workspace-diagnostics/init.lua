@@ -1,4 +1,4 @@
-local WorkspaceDiagnostics = {}
+local M = {}
 local _loaded_clients = {}
 local _workspace_files
 
@@ -6,7 +6,7 @@ local _workspace_files
 ---
 --- Default values:
 ---@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section)
-WorkspaceDiagnostics.options = {
+M.options = {
   workspace_files = function()
     return vim.fn.split(vim.fn.system("git ls-files"), "\n")
   end,
@@ -19,17 +19,17 @@ WorkspaceDiagnostics.options = {
 ---@param options table Module config table. See |WorkspaceDiagnostics.options|.
 ---
 ---@usage `require("workspace-diagnostics").setup()` (add `{}` with your |WorkspaceDiagnostics.options| table)
-function WorkspaceDiagnostics.setup(options)
+function M.setup(options)
   options = options or {}
 
-  WorkspaceDiagnostics.options = vim.tbl_deep_extend("keep", options, WorkspaceDiagnostics.options)
+  M.options = vim.tbl_deep_extend("keep", options, M.options)
 
-  return WorkspaceDiagnostics.options
+  return M.options
 end
 
 local function _get_workspace_files()
   if _workspace_files == nil then
-    _workspace_files = WorkspaceDiagnostics.options.workspace_files() or {}
+    _workspace_files = M.options.workspace_files() or {}
 
     _workspace_files = vim.tbl_filter(function(path)
       return vim.fn.filereadable(path) == 1
@@ -87,7 +87,7 @@ end
 ---@param bufnr number Buffer number.
 ---
 ---@usage `require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)`
-function WorkspaceDiagnostics.populate_workspace_diagnostics(client, bufnr)
+function M.populate_workspace_diagnostics(client, bufnr)
   if vim.tbl_contains(_loaded_clients, client.id) then
     return
   end
@@ -124,4 +124,4 @@ function WorkspaceDiagnostics.populate_workspace_diagnostics(client, bufnr)
   end
 end
 
-return WorkspaceDiagnostics
+return M
