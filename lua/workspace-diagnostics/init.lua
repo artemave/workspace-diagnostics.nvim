@@ -1,6 +1,8 @@
 local M = {}
 local _loaded_clients = {}
 local _workspace_files
+local _detected_filetypes = {}
+local _dont_cache_these_extensions = { "conf" }
 
 --- Plugin configuration with its default values.
 ---
@@ -65,8 +67,6 @@ local function _detect_filetype(path)
   return filetype
 end
 
-local _detected_filetypes = {}
-
 local function _get_filetype(path)
   local ext = vim.fn.fnamemodify(path, ":e")
 
@@ -76,7 +76,11 @@ local function _get_filetype(path)
 
   local filetype = _detect_filetype(path)
 
-  _detected_filetypes[ext] = filetype
+  -- some file types share the same extension (see https://github.com/artemave/workspace-diagnostics.nvim/issues/3)
+  -- so we never want to cache detection results for those ones.
+  if not vim.tbl_contains(_dont_cache_these_extensions, ext) then
+    _detected_filetypes[ext] = filetype
+  end
 
   return filetype
 end
