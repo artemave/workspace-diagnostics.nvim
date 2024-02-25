@@ -39,7 +39,7 @@ https://github.com/artemave/workspace-diagnostics.nvim/assets/23721/ae32fdc8-a54
 <td>
 
 ```lua
-use {"workspace-diagnostics.nvim"}
+use {"artemave/workspace-diagnostics.nvim"}
 ```
 
 </td>
@@ -53,7 +53,7 @@ use {"workspace-diagnostics.nvim"}
 <td>
 
 ```lua
-Plug "workspace-diagnostics.nvim"
+Plug "artemave/workspace-diagnostics.nvim"
 ```
 
 </td>
@@ -67,7 +67,7 @@ Plug "workspace-diagnostics.nvim"
 <td>
 
 ```lua
-require("lazy").setup({"workspace-diagnostics.nvim"})
+require("lazy").setup({"artemave/workspace-diagnostics.nvim"})
 ```
 
 </td>
