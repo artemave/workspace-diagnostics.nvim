@@ -10,7 +10,10 @@ local _dont_cache_these_extensions = { "conf" }
 ---@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section)
 M.options = {
   workspace_files = function()
-    return vim.fn.split(vim.fn.system("git ls-files"), "\n")
+    local gitPath = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    local workspace_files = vim.fn.split(vim.fn.system("git ls-files " .. gitPath), "\n")
+
+    return workspace_files
   end,
 
   debug = false,
