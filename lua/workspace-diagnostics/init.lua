@@ -10,10 +10,15 @@ local _dont_cache_these_extensions = { "conf" }
 ---@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section)
 M.options = {
   workspace_files = function()
-    return vim.fn.split(vim.fn.system("git ls-files"), "\n")
+    local gitPath = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    local workspace_files = vim.fn.split(vim.fn.system("git ls-files " .. gitPath), "\n")
+
+    return workspace_files
   end,
 
   debug = false,
+
+  exclude_filetypes = {'mp3', 'mp4', 'wav', 'png', 'jpeg', 'pdf', 'zip', 'tar', 'gz', 'rar', '7z', 'exe', 'dll', 'out', 'jar', 'war', 'lock',  'swp',  'gif', 'bmp', 'webp', 'svg', 'avi', 'mkv', 'webm', 'mov', 'flv', 'wmv', 'wma'}
 }
 
 --- Define workspace-diagnostics setup.
@@ -110,7 +115,7 @@ function M.populate_workspace_diagnostics(client, bufnr)
       goto continue
     end
 
-    if not vim.tbl_contains(client.config.filetypes, filetype) then
+    if not (vim.tbl_contains(client.config.filetypes, filetype) or vim.tbl_contains(M.options.exclude_filetypes, filetype)) then
       goto continue
     end
 
