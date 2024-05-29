@@ -17,8 +17,6 @@ M.options = {
   end,
 
   debug = false,
-
-  exclude_filetypes = {'mp3', 'mp4', 'wav', 'png', 'jpeg', 'pdf', 'zip', 'tar', 'gz', 'rar', '7z', 'exe', 'dll', 'out', 'jar', 'war', 'lock',  'swp',  'gif', 'bmp', 'webp', 'svg', 'avi', 'mkv', 'webm', 'mov', 'flv', 'wmv', 'wma'}
 }
 
 --- Define workspace-diagnostics setup.
@@ -115,7 +113,7 @@ function M.populate_workspace_diagnostics(client, bufnr)
       goto continue
     end
 
-    if not (vim.tbl_contains(client.config.filetypes, filetype) or vim.tbl_contains(M.options.exclude_filetypes, filetype)) then
+    if not vim.tbl_contains(client.config.filetypes, filetype) then
       goto continue
     end
 
