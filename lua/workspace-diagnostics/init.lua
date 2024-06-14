@@ -134,6 +134,10 @@ function M.populate_workspace_diagnostics(client, bufnr)
     return
   end
 
+  if not vim.tbl_get(client.config, "capabilities", "textDocument", "publishDiagnostics") then
+    return
+  end
+
   _populate_workspace_diagnostics(client, bufnr)
 end
 
