@@ -73,7 +73,7 @@ end
 local function _get_filetype(path)
   local ext = vim.fn.fnamemodify(path, ":e")
 
-  if _detected_filetypes[ext] then
+  if rawget(_detected_filetypes, ext) ~= nil then
     return _detected_filetypes[ext]
   end
 
@@ -82,10 +82,40 @@ local function _get_filetype(path)
   -- some file types share the same extension (see https://github.com/artemave/workspace-diagnostics.nvim/issues/3)
   -- so we never want to cache detection results for those ones.
   if not vim.tbl_contains(_dont_cache_these_extensions, ext) then
-    _detected_filetypes[ext] = filetype
+    _detected_filetypes[ext] = filetype or false
   end
 
   return filetype
+end
+
+local function _populate_workspace_diagnostics(client, bufnr)
+  local workspace_files = _get_workspace_files()
+
+  for _, path in ipairs(workspace_files) do
+    local filetype = _get_filetype(path)
+
+    if path == vim.api.nvim_buf_get_name(bufnr) then
+      goto continue
+    end
+
+    if not vim.tbl_contains(client.config.filetypes, filetype) then
+      goto continue
+    end
+
+    vim.defer_fn(function()
+      local params = {
+        textDocument = {
+          uri = vim.uri_from_fname(path),
+          version = 0,
+          text = vim.fn.join(vim.fn.readfile(path), "\n"),
+          languageId = filetype,
+        },
+      }
+      client.notify("textDocument/didOpen", params)
+    end, 0)
+
+    ::continue::
+  end
 end
 
 --- Populate workspace diagnostics.
@@ -104,31 +134,7 @@ function M.populate_workspace_diagnostics(client, bufnr)
     return
   end
 
-  local workspace_files = _get_workspace_files()
-
-  for _, path in ipairs(workspace_files) do
-    local filetype = _get_filetype(path)
-
-    if path == vim.api.nvim_buf_get_name(bufnr) then
-      goto continue
-    end
-
-    if not vim.tbl_contains(client.config.filetypes, filetype) then
-      goto continue
-    end
-
-    local params = {
-      textDocument = {
-        uri = vim.uri_from_fname(path),
-        version = 0,
-        text = vim.fn.join(vim.fn.readfile(path), "\n"),
-        languageId = filetype,
-      },
-    }
-    client.notify("textDocument/didOpen", params)
-
-    ::continue::
-  end
+  _populate_workspace_diagnostics(client, bufnr)
 end
 
 return M
