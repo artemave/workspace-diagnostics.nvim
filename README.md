@@ -92,6 +92,21 @@ require('lspconfig').tsserver.setup({
 
 Despite its placement, `populate_workspace_diagnostics` will actually do the work only once per client.
 
+Alternatively, you can trigger it explicitly via a keybinding. E.g., the following code maps `<space>x` to populate workspace diagnostics:
+
+```lua
+vim.api.nvim_set_keymap('n', '<space>x', '', {
+  noremap = true,
+  callback = function()
+    for _, client in ipairs(vim.lsp.buf_get_clients()) do
+      require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+    end
+  end
+})
+```
+
+Caveat: this only populates diagnostics for the files that share type with the current buffer. E.g., in a rails project, if you run this in a javascript file, you'll get diagnostics for all javascript files, but not ruby files.
+
 ## ⚙ Configuration
 
 You can configure a different function that returns a list of project files (it defaults to the output of `git ls-files`).
