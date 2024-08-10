@@ -119,6 +119,15 @@ require("workspace-diagnostics").setup({
 })
 ```
 
+Some lsp clients do not advertise filetypes they cover, which makes it impossible for this plugin to select relevant project files. In this case, you'll see a warning, and you'll need to explicitly add `filetypes` when setting up the client. E.g.:
+
+```lua
+require("roslyn").setup({
+  config = {
+    filetypes = { 'cs' },
+  },
+})
+```
 
 ## ⌨ Contributing
 
