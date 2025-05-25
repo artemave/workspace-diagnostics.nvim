@@ -130,11 +130,11 @@ function M.populate_workspace_diagnostics(client, bufnr)
   end
   table.insert(_loaded_clients, client.id)
 
-  if not vim.tbl_get(client.server_capabilities, "textDocumentSync", "openClose") then
+  if not client:supports_method("textDocumentSync/openClose") then
     return
   end
 
-  if not vim.tbl_get(client.config, "capabilities", "textDocument", "publishDiagnostics") then
+  if not client:supports_method("textDocument/publishDiagnostics") then
     return
   end
 
