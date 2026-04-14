@@ -134,10 +134,6 @@ function M.populate_workspace_diagnostics(client, bufnr)
     return
   end
 
-  if not client:supports_method("textDocument/publishDiagnostics") then
-    return
-  end
-
   if not vim.tbl_get(client.config, "filetypes") then
     local msg = "[workspace-diagnostics.nvim] "
       .. client.name
