@@ -111,7 +111,7 @@ local function _populate_workspace_diagnostics(client, bufnr)
           languageId = filetype,
         },
       }
-      client.notify("textDocument/didOpen", params)
+      client:notify("textDocument/didOpen", params)
     end, 0)
 
     ::continue::
