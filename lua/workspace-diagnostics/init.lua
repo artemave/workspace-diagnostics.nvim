@@ -111,7 +111,11 @@ local function _populate_workspace_diagnostics(client, bufnr)
           languageId = filetype,
         },
       }
-      client:notify("textDocument/didOpen", params)
+      if vim.fn.has("nvim-0.12") == 1 then
+        client:notify("textDocument/didOpen", params)
+      else
+        client.notify(client, "textDocument/didOpen", params)
+      end
     end, 0)
 
     ::continue::
